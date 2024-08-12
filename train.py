@@ -29,6 +29,16 @@ from torch.distributed import init_process_group, destroy_process_group
 
 from model import GPTConfig, GPT
 
+from pathlib import Path
+Path("out").mkdir(parents=True, exist_ok=True)
+Path("output").mkdir(parents=True, exist_ok=True)
+
+with open("out/text.txt", "w") as file:
+    file.write("This file was created in the out directory.")
+
+with open("output/text.txt", "w") as file:
+    file.write("This file was created in the out directory.")
+
 # -----------------------------------------------------------------------------
 # default config values designed to train a gpt2 (124M) on OpenWebText
 # I/O
