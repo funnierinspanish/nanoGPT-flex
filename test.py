@@ -1,6 +1,58 @@
+import sys
 import os
-from pathlib import Path
 import logging
+from pathlib import Path
+
+
+
+def main():
+    try:
+        # Check if the output directory exists
+
+        if Path("output").exists():
+            logging.info("Output directory exists")
+        else:
+            Path("output").mkdir(parents=True, exist_ok=True)
+            logging.info("Created output/")
+    except Exception as e:
+        logging.error(f"Error creating output directory: {e}")
+
+    try:
+        Path("subdir").mkdir(parents=True, exist_ok=True)
+        logging.info("Created subdir/")
+        Path("subdir/more").mkdir(parents=True, exist_ok=True)
+        logging.info("Created subdir/more/")
+
+        with open("this_was_in_root.txt", "w") as file:
+            file.write("This file was created in the root directory.")
+            logging.info("Created this_was_in_root.txt")
+
+        with open("subdir/more/this_was_in_root.txt", "w") as file:
+            file.write("This file was created in the subdir/more/ directory.")
+            logging.info("Created subdir/more/this_was_in_root.txt")
+
+        with open("output/new_output.txt", "w") as file:
+            file.write("This file was created in the out directory.")
+            logging.info("Created output/new_output.txt")
+
+        os.system("cp this_was_in_root.txt output/copied_from_root.txt")
+        logging.info("Copied this_was_in_root.txt to output/copied_from_root.txt")
+        os.system("cp subdir/more/this_was_in_root.txt output/copied_from_root_subdir.txt")
+        logging.info("Copied subdir/more/this_was_in_root.txt to output/copied_from_root_subdir.txt")
+
+        try:
+            # list files in the root directory
+            logging.info("Files in the root directory:")
+            for file in os.listdir('output'):
+                logging.info(file)
+            sys.exit(0)
+        except Exception as e:
+            logging.error(f"Error listing files in root directory: {e}")
+    except Exception as e:
+        logging.error(f"Error creating files: {e}") 
+
+print("init")
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Example logs
 logging.debug('This is a debug message')
@@ -9,41 +61,7 @@ logging.warning('This is a warning message')
 logging.error('This is an error message')
 logging.critical('This is a critical message')
 print("This is a regular print statement")
-
-# Check if the output directory exists
-if Path("output").exists():
-    logging.debug("Output directory exists")
-else:
-    try:
-        Path("output").mkdir(parents=True, exist_ok=True)
-        logging.debug("Created output/")
-    except Exception as e:
-        logging.error(f"Error creating output directory: {e}")
-
-# # Check if the root directory exists
-# if Path("input").exists():
-#     print("root directory exists")
-# else:
-#     Path("input").mkdir(parents=True, exist_ok=True)
-#     print("Created ")
-
-
-Path("subdir/more").mkdir(parents=True, exist_ok=True)
-logging.debug("Created subdir/more/")
-
-with open("this_was_in_root.txt", "w") as file:
-    file.write("This file was created in the root directory.")
-    logging.debug("Created this_was_in_root.txt")
-
-with open("subdir/more/this_was_in_root.txt", "w") as file:
-    file.write("This file was created in the subdir/more/ directory.")
-    logging.debug("Created subdir/more/this_was_in_root.txt")
-
-with open("output/new_output.txt", "w") as file:
-    file.write("This file was created in the out directory.")
-    logging.debug("Created output/new_output.txt")
-
-os.system("cp this_was_in_root.txt output/copied_from_root.txt")
-logging.debug("Copied this_was_in_root.txt to output/copied_from_root.txt")
-os.system("cp subdir/more/this_was_in_root.txt output/copied_from_root_subdir.txt")
-logging.debug("Copied subdir/more/this_was_in_root.txt to output/copied_from_root_subdir.txt")
+print("-----------------------------------------------")
+main()
+print("-----------------------------------------------/")
+sys.exit(0)
