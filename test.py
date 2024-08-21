@@ -6,16 +6,22 @@ from pathlib import Path
 
 
 def main():
-    try:
-        # Check if the output directory exists
 
-        if Path("output").exists():
-            logging.info("Output directory exists")
-        else:
-            Path("output").mkdir(parents=True, exist_ok=True)
-            logging.info("Created output/")
-    except Exception as e:
-        logging.error(f"Error creating output directory: {e}")
+    # Check if the output directory exists
+    if Path("output").exists():
+        logging.info("output directory exists")
+    else:
+        logging.error("No output/ directory found....")
+
+    # Check if the input directory exists
+    if Path("input").exists():
+        logging.info("input directory exists")
+        logging.info("//////////////////////////////////////////")
+        logging.info("Files in the input directory:")
+        for file in os.listdir('output'):
+            logging.info(file)
+    else:
+        logging.error("No input/ directory found....")
 
     try:
         Path("subdir").mkdir(parents=True, exist_ok=True)
@@ -39,6 +45,9 @@ def main():
         logging.info("Copied this_was_in_root.txt to output/copied_from_root.txt")
         os.system("cp subdir/more/this_was_in_root.txt output/copied_from_root_subdir.txt")
         logging.info("Copied subdir/more/this_was_in_root.txt to output/copied_from_root_subdir.txt")
+        
+        os.system("cp input/val.bin output/the_val.bin")
+        logging.info("Copied input/val.bin to output/the_val.bin")
 
         try:
             # list files in the root directory
@@ -59,7 +68,7 @@ def main():
             logging.error(f"Error listing files in root directory: {e}")
 
     except Exception as e:
-        logging.error(f"Error creating files: {e}") 
+        logging.error(f"Error with files operations: {e}") 
 
 print("init")
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
