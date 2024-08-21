@@ -42,12 +42,22 @@ def main():
 
         try:
             # list files in the root directory
-            logging.info("Files in the root directory:")
+            print("//////////////////////////////////////////")
+            logging.info("Files in the output directory:")
             for file in os.listdir('output'):
                 logging.info(file)
-            sys.exit(0)
         except Exception as e:
             logging.error(f"Error listing files in root directory: {e}")
+
+        try:
+            # list files in the root directory
+            print("//////////////////////////////////////////")
+            logging.info("Files in the root directory:")
+            for file in os.listdir():
+                logging.info(file)
+        except Exception as e:
+            logging.error(f"Error listing files in root directory: {e}")
+
     except Exception as e:
         logging.error(f"Error creating files: {e}") 
 
