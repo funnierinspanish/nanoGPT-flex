@@ -7,7 +7,7 @@ import time
 
 
 def main():
-    # Starting
+    # Starting the script
     time.sleep(1)
     logging.info("Starting.........")
     time.sleep(2)
