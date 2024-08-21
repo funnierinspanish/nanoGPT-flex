@@ -63,28 +63,48 @@ def main():
         os.system("cp shakespeare_char/train.bin output/the_train.bin")
         logging.info("Copied shakespeare_char/val.bin to output/the_val.bin")
 
-        try:
-            # list files in the root directory
-            print("//////////////////////////////////////////")
-            logging.info("Files in the output directory:")
-            for file in os.listdir('output'):
-                logging.info(file)
-        except Exception as e:
-            logging.error(f"Error listing files in root directory: {e}")
-            sys.exit(1)
-
-        try:
-            # list files in the root directory
-            print("//////////////////////////////////////////")
-            logging.info("Files in the root directory:")
-            for file in os.listdir():
-                logging.info(file)
-        except Exception as e:
-            logging.error(f"Error listing files in root directory: {e}")
-            sys.exit(1)
-
     except Exception as e:
         logging.error(f"Error with file operations: {e}") 
+        sys.exit(1)
+
+    try:
+        # list files in the root directory
+        print("//////////////////////////////////////////")
+        logging.info("Files in the root directory:")
+        for file in os.listdir():
+            logging.info(file)
+    except Exception as e:
+        logging.error(f"Error listing files in root directory: {e}")
+        sys.exit(1)
+
+    try:
+        # list files in the root directory
+        print("//////////////////////////////////////////")
+        logging.info("Files in the shakespeare_char directory:")
+        for file in os.listdir('shakespeare_char'):
+            logging.info(file)
+    except Exception as e:
+        logging.error(f"Error listing files in input directory: {e}")
+        sys.exit(1)
+
+    try:
+        # list files in the root directory
+        print("//////////////////////////////////////////")
+        logging.info("Files in the output directory:")
+        for file in os.listdir('output'):
+            logging.info(file)
+    except Exception as e:
+        logging.error(f"Error listing files in root directory: {e}")
+        sys.exit(1)
+
+    try:
+        # list files in the root directory
+        print("//////////////////////////////////////////")
+        logging.info("Files in the input directory:")
+        for file in os.listdir('input'):
+            logging.info(file)
+    except Exception as e:
+        logging.error(f"Error listing files in input directory: {e}")
         sys.exit(1)
 
 print("init")
