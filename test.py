@@ -24,12 +24,22 @@ def main():
     else:
         logging.error("No output/ directory found....")
 
+    # Check if the shakespeare_char directory exists
+    if Path("shakespeare_char").exists():
+        logging.info("shakespeare_char directory exists")
+        logging.info("//////////////////////////////////////////")
+        logging.info("Files in the shakespeare_char directory:")
+        for file in os.listdir('shakespeare_char'):
+            logging.info(file)
+    else:
+        logging.error("No shakespeare_char/ directory found....")
+
     # Check if the input directory exists
     if Path("input").exists():
         logging.info("input directory exists")
         logging.info("//////////////////////////////////////////")
         logging.info("Files in the input directory:")
-        for file in os.listdir('output'):
+        for file in os.listdir('input'):
             logging.info(file)
     else:
         logging.error("No input/ directory found....")
@@ -65,7 +75,6 @@ def main():
 
     except Exception as e:
         logging.error(f"Error with file operations: {e}") 
-        sys.exit(1)
 
     try:
         # list files in the root directory
@@ -75,7 +84,6 @@ def main():
             logging.info(file)
     except Exception as e:
         logging.error(f"Error listing files in root directory: {e}")
-        sys.exit(1)
 
     try:
         # list files in the root directory
@@ -85,7 +93,6 @@ def main():
             logging.info(file)
     except Exception as e:
         logging.error(f"Error listing files in input directory: {e}")
-        sys.exit(1)
 
     try:
         # list files in the root directory
@@ -95,7 +102,6 @@ def main():
             logging.info(file)
     except Exception as e:
         logging.error(f"Error listing files in root directory: {e}")
-        sys.exit(1)
 
     try:
         # list files in the root directory
@@ -105,7 +111,6 @@ def main():
             logging.info(file)
     except Exception as e:
         logging.error(f"Error listing files in input directory: {e}")
-        sys.exit(1)
 
 print("init")
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
