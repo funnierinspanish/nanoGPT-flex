@@ -80,13 +80,8 @@ print("init")
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Example logs
-logging.debug('This is a debug message')
-logging.info('This is an info message')
-logging.warning('This is a warning message')
-logging.error('This is an error message')
-logging.critical('This is a critical message')
-print("This is a regular print statement")
-print("-----------------------------------------------")
+
+print("/-----------------------------------------------")
 main()
 print("-----------------------------------------------/")
 sys.exit(0)
