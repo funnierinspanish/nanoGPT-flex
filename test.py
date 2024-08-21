@@ -60,6 +60,7 @@ def main():
                 logging.info(file)
         except Exception as e:
             logging.error(f"Error listing files in root directory: {e}")
+            sys.exit(1)
 
         try:
             # list files in the root directory
@@ -69,9 +70,11 @@ def main():
                 logging.info(file)
         except Exception as e:
             logging.error(f"Error listing files in root directory: {e}")
+            sys.exit(1)
 
     except Exception as e:
         logging.error(f"Error with files operations: {e}") 
+        sys.exit(1)
 
 print("init")
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
