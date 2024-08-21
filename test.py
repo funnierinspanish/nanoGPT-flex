@@ -2,10 +2,21 @@ import sys
 import os
 import logging
 from pathlib import Path
+import time
 
 
 
 def main():
+    # Starting
+    time.sleep(1)
+    logging.info("Starting.........")
+    time.sleep(2)
+    logging.info("...........................")
+    time.sleep(3)
+    logging.info("...........................................")
+    time.sleep(1)
+
+    logging.info("Started!")
 
     # Check if the output directory exists
     if Path("output").exists():
@@ -73,7 +84,7 @@ def main():
             sys.exit(1)
 
     except Exception as e:
-        logging.error(f"Error with files operations: {e}") 
+        logging.error(f"Error with file operations: {e}") 
         sys.exit(1)
 
 print("init")
