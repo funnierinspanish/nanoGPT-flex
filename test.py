@@ -2,12 +2,23 @@ import os
 from pathlib import Path
 import logging
 
-# # Check if the output directory exists
-# if Path("output").exists():
-#     logging.debug("Output directory exists")
-# else:
-#     Path("output").mkdir(parents=True, exist_ok=True)
-#     logging.debug("Created output/")
+# Example logs
+logging.debug('This is a debug message')
+logging.info('This is an info message')
+logging.warning('This is a warning message')
+logging.error('This is an error message')
+logging.critical('This is a critical message')
+print("This is a regular print statement")
+
+# Check if the output directory exists
+if Path("output").exists():
+    logging.debug("Output directory exists")
+else:
+    try:
+        Path("output").mkdir(parents=True, exist_ok=True)
+        logging.debug("Created output/")
+    except Exception as e:
+        logging.error(f"Error creating output directory: {e}")
 
 # # Check if the root directory exists
 # if Path("input").exists():
