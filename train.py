@@ -83,7 +83,7 @@ backend = 'nccl' # 'nccl', 'gloo', etc.
 device = 'cuda' # examples: 'cpu', 'cuda', 'cuda:0', 'cuda:1' etc., or try 'mps' on macbooks
 dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16' # 'float32', 'bfloat16', or 'float16', the latter will auto implement a GradScaler
 compile = True # use PyTorch 2.0 to compile the model to be faster
-write_smoke = False
+smoke_test = False
 # -----------------------------------------------------------------------------
 config_keys = [k for k,v in globals().items() if not k.startswith('_') and isinstance(v, (int, float, bool, str))]
 exec(open('configurator.py').read()) # overrides from command line or config file
@@ -299,12 +299,13 @@ while True:
                 now = datetime.now()
                 formatted_datetime = f"{now:%Y-%m-%d_%H:%M.%S}"
                 checkpoint_name = f'ckpt_{iter_num}_{formatted_datetime}.pt'
-                print(f"saving checkpoint {checkpoint_name} to {out_dir}")
-                # If there's a flag named 'write_smoke', then write a file named 'smoke.txt' to the out directory.
-                if 'write_smoke' in config:
+                # If there's a flag named 'smoke_test', then write a file named 'smoke.txt' to the out directory
+                if smoke_test:
+                    print(f"saving smokey-test checkpoint {checkpoint_name} to {out_dir}")
                     with open(os.path.join(out_dir, f'smoke_{iter_num}_{formatted_datetime}.txt'), 'w') as f:
                         f.write(f'This is smoke: {iter_num}_{formatted_datetime}')
                 else:
+                    print(f"saving checkpoint {checkpoint_name} to {out_dir}")
                     torch.save(checkpoint, os.path.join(out_dir, checkpoint_name))
     if iter_num == 0 and eval_only:
         break
