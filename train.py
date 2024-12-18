@@ -301,8 +301,9 @@ while True:
                 checkpoint_name = f'ckpt_{iter_num}_{formatted_datetime}.pt'
                 # If there's a flag named 'smoke_test', then write a file named 'smoke.txt' to the out directory
                 if smoke_test:
+                    file_name = f'smoke_{iter_num}_{formatted_datetime}.pt'
                     print(f"saving smokey-test checkpoint {checkpoint_name} to {out_dir}")
-                    with open(os.path.join(out_dir, f'smoke_{iter_num}_{formatted_datetime}.txt'), 'w') as f:
+                    with open(os.path.join(out_dir, file_name), 'w') as f:
                         f.write(f'This is smoke: {iter_num}_{formatted_datetime}')
                 else:
                     print(f"saving checkpoint {checkpoint_name} to {out_dir}")
